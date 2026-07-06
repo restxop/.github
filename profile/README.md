@@ -1,6 +1,6 @@
 <div align="center">
 
-# Rest XOP
+# RestXOP
 
 **Streaming binary attachments over REST — MTOM/XOP semantics, without the SOAP.**
 
@@ -22,11 +22,11 @@ The usual way to send a binary file alongside structured data in a REST API is t
 - **Full buffering** — the whole attachment has to sit in memory to be encoded and decoded, which doesn't scale to large files.
 - **No streaming** — you can't start processing bytes until the entire blob has been received and decoded.
 
-The SOAP world solved this years ago with **MTOM/XOP**: keep the structured message intact, but pull binary content out into separate, streamable MIME parts referenced by ID. Rest XOP brings that same idea to plain REST.
+The SOAP world solved this years ago with **MTOM/XOP**: keep the structured message intact, but pull binary content out into separate, streamable MIME parts referenced by ID. RestXOP brings that same idea to plain REST.
 
-## What Rest XOP does
+## What RestXOP does
 
-Rest XOP sends a **`multipart/related`** request whose **root part is JSON**. Binary attachments travel as separate parts, referenced from the JSON by content ID — so they stream, unencoded, instead of bloating the body.
+RestXOP sends a **`multipart/related`** request whose **root part is JSON**. Binary attachments travel as separate parts, referenced from the JSON by content ID — so they stream, unencoded, instead of bloating the body.
 
 ```
 POST /documents
@@ -51,7 +51,7 @@ The JSON stays clean and readable; the bytes stay raw and streamable. Consumers 
 
 - **No Base64 bloat** — binary parts are sent raw, streamed end to end.
 - **JSON-first** — the message stays ordinary JSON, with lightweight `cid:` references to attachments.
-- **Java / Spring Boot server support** — drop-in integration for producing and consuming Rest XOP payloads.
+- **Java / Spring Boot server support** — drop-in integration for producing and consuming RestXOP payloads.
 - **JavaScript / TypeScript clients** — first-class support for browser and Node consumers.
 - **Memory-efficient** — designed for large attachments without buffering the whole payload.
 - **Apache-2.0 licensed** — open and free to use.
@@ -112,7 +112,7 @@ Zero runtime dependencies, ESM-only, under 10 KB gzipped; runs in evergreen brow
 
 ## Status
 
-Rest XOP is early and actively developed. Feedback, issues, and contributions are welcome — if you've ever winced at Base64-ing a large file into a JSON body, this project is for you.
+RestXOP is early and actively developed. Feedback, issues, and contributions are welcome — if you've ever winced at Base64-ing a large file into a JSON body, this project is for you.
 
 ## License
 
@@ -121,5 +121,5 @@ Licensed under the [Apache License 2.0](https://www.apache.org/licenses/LICENSE-
 ---
 
 <div align="center">
-<sub>Rest XOP · streaming attachments over REST · <a href="https://restxop.dev">restxop.dev</a></sub>
+<sub>RestXOP · streaming attachments over REST · <a href="https://restxop.dev">restxop.dev</a></sub>
 </div>
